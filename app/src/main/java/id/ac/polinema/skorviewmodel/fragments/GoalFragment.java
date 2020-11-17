@@ -39,6 +39,7 @@ public class GoalFragment extends Fragment {
 							 Bundle savedInstanceState) {
 		FragmentGoalBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_goal, container, false);
 		// instance viewmodel here
+		viewModel = new ViewModelProvider(requireActivity()).get(ScoreViewModel.class);
 		binding.setFragment(this);
 		binding.setGoalScorer(goalScorer);
 		requestKey = GoalFragmentArgs.fromBundle(getArguments()).getRequestKey();
@@ -50,6 +51,7 @@ public class GoalFragment extends Fragment {
 		bundle.putParcelable(ScoreFragment.SCORER_KEY, goalScorer);
 
 		// set goalscorer use viewmodel
+		viewModel.setGoalScorer(requestKey,goalScorer);
 		Navigation.findNavController(view).navigateUp();
 	}
 
